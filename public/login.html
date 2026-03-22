@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1.2s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 20px;
+                border-radius: 15px;
+                max-width: 90vw;
+            }
+
+            h2 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 14px;
+                margin: 8px 0;
+            }
+
+            input:focus {
+                transform: scale(1.02);
+            }
+
+            button {
+                padding: 12px;
+                font-size: 16px;
+                margin-top: 15px;
+            }
+
+            .shape {
+                display: none; /* Hide floating shapes on mobile for better performance */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px 15px;
+                margin: 10px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 13px;
+                margin: 6px 0;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 15px;
+                margin-top: 12px;
+            }
+
+            body {
+                padding: 10px;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .login-container {
+                padding: 20px 10px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            input, button {
+                font-size: 12px;
+            }
+        }
+
+        /* High-resolution displays */
+        @media (min-width: 1200px) {
+            .login-container {
+                padding: 50px;
+                max-width: 450px;
+            }
+
+            h2 {
+                font-size: 3em;
+            }
+
+            input {
+                padding: 18px;
+                font-size: 18px;
+            }
+
+            button {
+                padding: 18px;
+                font-size: 20px;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body {
+                height: auto;
+                min-height: 100vh;
+                padding: 20px 0;
+            }
+
+            .login-container {
+                margin: 10px auto;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .login-container,
+            h2,
+            input:focus,
+            button:hover,
+            .shape {
+                animation: none;
+                transition: none;
+            }
+
+            input:focus {
+                transform: none;
+            }
+
+            button:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input id="user" placeholder="username">
+        <input id="pass" placeholder="password">
+        <button onclick="login()">
+            Login
+        </button>
+    </div>
+    <script>
+        async function login(){
+            let name = document.getElementById("user").value;
+            let password = document.getElementById("pass").value;
+            let res = await fetch("/login",{
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    password
+                })
+            })
+            let data = await res.json();
+            if(data.status == "success"){
+                localStorage.setItem("user",data.user.name);
+                window.location = "dashboard.html";
+
+            }
+            else{
+                alert(" wrong credentials");
+            }
+        }
+    </script>
+</body>
+</html>

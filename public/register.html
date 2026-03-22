@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+<style>
+    :root {
+        --bg1: #5d9cec;
+        --bg2: #4a69bb;
+        --card: rgba(255, 255, 255, 0.95);
+        --text: #1e2a47;
+        --muted: #6b7c99;
+        --primary: #2d8cf0;
+        --primary-dark: #1768c5;
+        --radius: 14px;
+        --shadow: 0 16px 36px rgba(15, 38, 72, 0.2);
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .register-card {
+        width: min(420px, 92vw);
+        padding: 32px;
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(8px);
+    }
+    .register-card h2 {
+        margin-top: 0;
+        margin-bottom: 14px;
+        font-size: 1.7rem;
+        color: #1b2e52;
+        text-align: center;
+    }
+    .register-card p {
+        margin-bottom: 18px;
+        color: var(--muted);
+        text-align: center;
+    }
+    .register-card input {
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #d6e3f7;
+        background: #f8fbff;
+        color: #1a2b4c;
+        font-size: 1rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .register-card input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(45, 140, 240, 0.18);
+    }
+    .register-card button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        border: 0;
+        border-radius: 10px;
+        background: linear-gradient(120deg, var(--primary), var(--primary-dark));
+        color: white;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .register-card button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(20, 102, 190, 0.3);
+    }
+    .register-card button:active {
+        transform: translateY(1px);
+    }
+    .hint {
+        text-align: center;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: .88rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .register-card {
+            width: min(380px, 95vw);
+            padding: 24px;
+            margin: 20px;
+        }
+
+        .register-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .register-card p {
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .register-card input {
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .register-card button {
+            padding: 10px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .register-card {
+            width: min(320px, 98vw);
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .register-card h2 {
+            font-size: 1.3rem;
+        }
+
+        .register-card input,
+        .register-card button {
+            font-size: 0.85rem;
+        }
+
+        .hint {
+            font-size: 0.75rem;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .register-card {
+            padding: 16px;
+        }
+
+        .register-card h2 {
+            font-size: 1.2rem;
+        }
+    }
+
+    /* High-resolution displays */
+    @media (min-width: 1200px) {
+        .register-card {
+            width: min(480px, 40vw);
+            padding: 40px;
+        }
+
+        .register-card h2 {
+            font-size: 2rem;
+        }
+
+        .register-card input {
+            padding: 14px 16px;
+            font-size: 1.1rem;
+        }
+
+        .register-card button {
+            padding: 14px;
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Landscape orientation for mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+        body {
+            padding: 20px 0;
+        }
+
+        .register-card {
+            margin: 10px auto;
+        }
+    }
+
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        .register-card input,
+        .register-card button {
+            transition: none;
+        }
+
+        .register-card button:hover,
+        .register-card button:active {
+            transform: none;
+        }
+    }
+</style>
+<body>
+    <section class="register-card">
+        <h2>Register</h2>
+        <p>Create your account securely and fast.</p>
+        <input id="user" placeholder="Username" autocomplete="username">
+        <input id="pass" type="password" placeholder="Password" autocomplete="new-password">
+        <button onclick="register()">Register</button>
+        <p class="hint">Already have an account? </p> <a href="/Login/public/login.html">Go to Login</a>
+    </section>
+    <script>
+        async function register(){
+            let name = document.getElementById("user").value;
+            let password = document.getElementById("pass").value;
+            await fetch("/register",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    name,password
+                })
+
+            })
+            alert("Registered succesfully");
+        }
+    </script>
+</body>
+</html>
