@@ -1,10 +1,11 @@
  import mysql from "mysql2"
 
+ // SECURITY: Using environment variables instead of hardcoded secrets
  const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password:"Dinesh@2004",
-    database:"logindb"
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME || "logindb"
  })
  db.connect((err)=>{
     if(err){
