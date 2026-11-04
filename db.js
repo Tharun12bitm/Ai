@@ -1,19 +1,19 @@
- import mysql from "mysql2"
+import mysql from "mysql2"
 
- const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password:"Dinesh@2004",
-    database:"logindb"
- })
- db.connect((err)=>{
-    if(err){
+// 🛡️ Sentinel: Use environment variables instead of hardcoded credentials
+const db = mysql.createConnection({
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME || "logindb"
+})
+
+db.connect((err) => {
+    if (err) {
         console.log("Database connection error");
-        
-    }
-    else{
+    } else {
         console.log("Database is successfully connected");
-        
     }
- })
- export default db;
+})
+
+export default db;
