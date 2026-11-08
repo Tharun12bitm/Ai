@@ -1,10 +1,11 @@
  import mysql from "mysql2"
 
+ // 🛡️ Sentinel: Using environment variables to prevent hardcoded credentials
  const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password:"Dinesh@2004",
-    database:"logindb"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
  })
  db.connect((err)=>{
     if(err){
